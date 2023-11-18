@@ -1,15 +1,15 @@
-from sym_dynamics.dynamics import MechanicalSystem, CartPendParameters, get_cart_pend_dynamics
+from sym_dynamics.dynamics import MechanicalSystem
+import sympy as sy
 
 
-def get_reduced_system(par : CartPendParameters):
-  cart_pendulum = get_cart_pend_dynamics(par)
-  M = cart_pendulum.M
-  C = cart_pendulum.C
-  G = cart_pendulum.G
-  B = cart_pendulum.B
-  u = cart_pendulum.u
-  q = cart_pendulum.q
-  dq = cart_pendulum.dq
+def get_reduced_system(dynamics : MechanicalSystem, simplify=False) -> MechanicalSystem:
+  M = dynamics.M
+  C = dynamics.C
+  G = dynamics.G
+  B = dynamics.B
+  u = dynamics.u
+  q = dynamics.q
+  dq = dynamics.dq
 
   m11 = M[0,0]
   m12 = M[0,1:]
@@ -32,11 +32,19 @@ def get_reduced_system(par : CartPendParameters):
   Gr = m11 * g2 - m21 * g1
   Br = m11 * b2 - m21 * b1
 
+  if simplify:
+    Mr = sy.simplify(Mr)
+    Cr = sy.simplify(Cr)
+    Gr = sy.simplify(Gr)
+    Br = sy.simplify(Br)
+
   return MechanicalSystem(
+      u = dynamics.u,
       q = q[1:],
       dq = dq[1:],
       M = Mr,
       C = Cr,
       G = Gr,
       B = Br,
+      U = dynamics.U
   )

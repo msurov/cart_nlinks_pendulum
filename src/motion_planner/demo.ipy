@@ -1,0 +1,84 @@
+#%%
+
+from dataclasses import dataclass
+from common.mechsys import MechanicalSystem
+from motion_planner.reduced_system import get_reduced_system
+from sym_dynamics.dynamics import get_cart_pend_dynamics, CartPendParameters
+from IPython.display import display
+import numpy as np
+from scipy.integrate import solve_ivp
+import sympy as sy
+import matplotlib.pyplot as plt
+
+
+@dataclass(frozen=True, slots=True)
+class ZeroDynamics:
+  argument : sy.Symbol
+  alpha : sy.Expr
+  beta : sy.Expr
+  gamma : sy.Expr
+
+def apply_servo_connection(sys : MechanicalSystem, connection : sy.Expr, connection_arg : sy.Symbol) -> ZeroDynamics:
+  Q = sy.Matrix(connection)
+  dQ = Q.diff(connection_arg)
+  ddQ = dQ.diff(connection_arg)
+
+  M = sys.M.subs(zip(sys.q, Q))
+  C = sys.C.subs(zip(sys.dq, dQ))
+  C = C.subs(zip(sys.q, Q))
+  G = sys.G.subs(zip(sys.q, Q))
+  B = sys.B.subs(zip(sys.q, Q))
+  B_perp = sy.Matrix([[B[1,0], -B[0,0]]])
+
+  alpha = (B_perp @ M @ dQ)[0,0]
+  beta = (B_perp @ (M @ ddQ + C @ dQ))[0,0]
+  gamma = (B_perp @ G)[0,0]
+
+  alpha = sy.simplify(alpha)
+  beta = sy.simplify(beta)
+  gamma = sy.simplify(gamma)
+
+  return ZeroDynamics(
+    argument = connection_arg,
+    alpha = alpha,
+    beta = beta,
+    gamma = gamma
+  )
+
+def compute_trajectory(zero_dynamics : ZeroDynamics, initial_position, duration):
+  alpha = zero_dynamics.alpha
+  beta = zero_dynamics.beta
+  gamma = zero_dynamics.gamma
+  speed = sy.Dummy('d' + zero_dynamics.argument.name)
+  rhs_expr = sy.Tuple(speed, (-beta * speed**2 - gamma) / alpha)
+  rhs_fun = sy.lambdify((zero_dynamics.argument, speed), rhs_expr)
+
+  def sys(t, st):
+    dst = rhs_fun(*st)
+    return np.array(dst)
+  
+  sol = solve_ivp(sys, [0., duration], [initial_position, 0.], max_step=1e-3)
+  plt.plot(sol.y[0], sol.y[1])
+
+def test():
+  m = sy.Symbol('m', positive=True, real=True)
+  g = sy.Symbol('g', positive=True, real=True)
+  l = sy.Symbol('l', positive=True, real=True)
+  par = CartPendParameters(
+    link_lengths = [sy.sympify(1), sy.sympify(1)],
+    mass_center = [sy.sympify(1)/2, sy.sympify(1)/2],
+    masses = [sy.sympify(1), sy.sympify(1), sy.sympify(1)],
+    gravity_accel = sy.sympify(1)
+  )
+  dynamics = get_cart_pend_dynamics(par, simplify=True)
+  reduced = get_reduced_system(dynamics, simplify=True)
+  variable = sy.Symbol(R'\phi', real=True)
+  # k = sy.Symbol('k', real=True)
+  k = sy.sympify(3) / 2
+  connection = sy.Tuple(k * variable, variable)
+  zero_dynamics = apply_servo_connection(reduced, connection, variable)
+  compute_trajectory(zero_dynamics, 0.5, 6.0)
+
+test()
+
+# %%
