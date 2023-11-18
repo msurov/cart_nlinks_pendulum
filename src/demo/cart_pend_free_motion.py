@@ -12,12 +12,12 @@ def test():
   pc = PerfCounter()
   par = CartPendParameters(
     link_lengths = [1.0] * 3,
-    mass_center = [0.5] * 3,
+    mass_center = [0.4] * 3,
     masses = [0.1] * 4,
     gravity_accel = 9.81
   )
   pc('get_cart_pend_dynamics')
-  dynamics = get_cart_pend_dynamics(par)
+  dynamics = get_cart_pend_dynamics(par, simplify=True)
   pc('get_numeric_dynamics')
   sys = get_numeric_dynamics(dynamics)
   dim = par.nlinks + 1
@@ -26,12 +26,13 @@ def test():
   np.random.seed(0)
   x0 = 1e-5 * np.random.normal(size=2*dim)
   pc('simulate')
-  simres = simulate(sys, input, [0., 3.], x0, 1e-2, max_step=1e-3)
-  arg = sy.Tuple(*dynamics.q, *dynamics.dq)
+  simres = simulate(sys, input, [0., 15.], x0, 1e-2, max_step=1e-3)
 
   pc('get_full_energy')
-  val = get_full_energy(dynamics)
-  full_energy = sy.lambdify(arg, val, 'numpy')
+  args = sy.Tuple(*dynamics.q, *dynamics.dq)
+  full_energy_expr = get_full_energy(dynamics)
+  full_energy_expr = sy.simplify(full_energy_expr)
+  full_energy = sy.lambdify(args, full_energy_expr, 'numpy')
   energy = [full_energy(*x) for x in simres.x]
 
   pc('plot')
