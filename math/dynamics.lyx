@@ -1,0 +1,483 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p_{1}=\left(\begin{array}{c}
+x\\
+0
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p_{2}=\left(\begin{array}{c}
+x+c_{1}\sin\theta_{1}\\
+c_{1}\cos\theta_{1}
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p_{3}=\left(\begin{array}{c}
+x+l_{1}\sin\theta_{1}+c_{2}\sin\theta_{2}\\
+l_{1}\cos\theta_{1}+c_{2}\cos\theta_{2}
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $v_{1}=\left(\begin{array}{ccc}
+1 & 0 & 0\\
+0 & 0 & 0
+\end{array}\right)\left(\begin{array}{c}
+\dot{x}\\
+\dot{\theta}_{1}\\
+\dot{\theta}_{2}
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $v_{2}=\left(\begin{array}{c}
+\dot{x}+c_{1}\cos\theta_{1}\dot{\theta}_{1}\\
+-c_{1}\sin\theta_{1}\dot{\theta}_{1}
+\end{array}\right)=\left(\begin{array}{ccc}
+1 & c_{1}\cos\theta_{1} & 0\\
+0 & -c_{1}\sin\theta_{1} & 0
+\end{array}\right)\left(\begin{array}{c}
+\dot{x}\\
+\dot{\theta}_{1}\\
+\dot{\theta}_{2}
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $v_{3}=\left(\begin{array}{c}
+\dot{x}+l_{1}\cos\theta_{1}\dot{\theta}_{1}+c_{2}\cos\theta_{2}\dot{\theta}_{2}\\
+-l_{1}\sin\theta_{1}\dot{\theta}_{1}-c_{2}\sin\theta_{2}\dot{\theta}_{2}
+\end{array}\right)=\left(\begin{array}{ccc}
+1 & l_{1}\cos\theta_{1} & c_{2}\cos\theta_{2}\\
+0 & -l_{1}\sin\theta_{1} & -c_{2}\sin\theta_{2}
+\end{array}\right)\left(\begin{array}{c}
+\dot{x}\\
+\dot{\theta}_{1}\\
+\dot{\theta}_{2}
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M_{1}=m_{1}\left(\begin{array}{cc}
+1 & 0\\
+0 & 0\\
+0 & 0
+\end{array}\right)\left(\begin{array}{ccc}
+1 & 0 & 0\\
+0 & 0 & 0
+\end{array}\right)=m_{1}\left(\begin{array}{ccc}
+1 & 0 & 0\\
+0 & 0 & 0\\
+0 & 0 & 0
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M_{2}=m_{2}\left(\begin{array}{cc}
+1 & 0\\
+c_{1}\cos\theta_{1} & -c_{1}\sin\theta_{1}\\
+0 & 0
+\end{array}\right)\left(\begin{array}{ccc}
+1 & c_{1}\cos\theta_{1} & 0\\
+0 & -c_{1}\sin\theta_{1} & 0
+\end{array}\right)=m_{2}\left(\begin{array}{ccc}
+1 & c_{1}\cos\theta_{1} & 0\\
+c_{1}\cos\theta_{1} & c_{1}^{2} & 0\\
+0 & 0 & 0
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M_{3}=m_{3}\left(\begin{array}{cc}
+1 & 0\\
+l_{1}\cos\theta_{1} & -l_{1}\sin\theta_{1}\\
+c_{2}\cos\theta_{2} & -c_{2}\sin\theta_{2}
+\end{array}\right)\left(\begin{array}{ccc}
+1 & l_{1}\cos\theta_{1} & c_{2}\cos\theta_{2}\\
+0 & -l_{1}\sin\theta_{1} & -c_{2}\sin\theta_{2}
+\end{array}\right)=m_{3}\left(\begin{array}{ccc}
+1 & l_{1}\cos\theta_{1} & c_{2}\cos\theta_{2}\\
+l_{1}\cos\theta_{1} & l_{1}^{2} & l_{1}\cos\theta_{1}c_{2}\cos\theta_{2}+l_{1}\sin\theta_{1}c_{2}\sin\theta_{2}\\
+c_{2}\cos\theta_{2} & l_{1}\cos\theta_{1}c_{2}\cos\theta_{2}+l_{1}\sin\theta_{1}c_{2}\sin\theta_{2} & c_{2}^{2}
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M=\left(\begin{array}{ccc}
+m_{1}+m_{2}+m_{3} & \left(m_{2}c_{1}+m_{3}l_{1}\right)\cos\theta_{1} & m_{3}c_{2}\cos\theta_{2}\\
+\left(m_{2}c_{1}+m_{3}l_{1}\right)\cos\theta_{1} & m_{2}c_{1}^{2}+m_{3}l_{1}^{2} & m_{3}l_{1}c_{2}\cos\left(\theta_{1}-\theta_{2}\right)\\
+m_{3}c_{2}\cos\theta_{2} & m_{3}l_{1}c_{2}\cos\left(\theta_{1}-\theta_{2}\right) & m_{3}c_{2}^{2}
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\partial_{x}M=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\partial_{\theta_{1}}M=\left(\begin{array}{ccc}
+0 & -\left(m_{2}c_{1}+m_{3}l_{1}\right)\sin\theta_{1} & 0\\
+-\left(m_{2}c_{1}+m_{3}l_{1}\right)\sin\theta_{1} & 0 & -m_{3}l_{1}c_{2}\sin\left(\theta_{1}-\theta_{2}\right)\\
+0 & -m_{3}l_{1}c_{2}\sin\left(\theta_{1}-\theta_{2}\right) & 0
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\partial_{\theta_{2}}M=\left(\begin{array}{ccc}
+0 & 0 & -m_{3}c_{2}\sin\theta_{2}\\
+0 & m_{2}c_{1}^{2}+m_{3}l_{1}^{2} & m_{3}l_{1}c_{2}\sin\left(\theta_{1}-\theta_{2}\right)\\
+-m_{3}c_{2}\sin\theta_{2} & m_{3}l_{1}c_{2}\sin\left(\theta_{1}-\theta_{2}\right) & 0
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M\ddot{q}+C\dot{q}+G=Bu$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $q\in\mathbb{R}^{3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M=\left(\begin{array}{cc}
+M_{1} & M_{2}\\
+M_{3} & M_{4}
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C=\left(\begin{array}{cc}
+C_{1} & C_{2}\\
+C_{3} & C_{4}
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D_{1}=\left(\begin{array}{ccc}
+0 & 1 & 0\\
+0 & 0 & 1
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D_{2}=\left(\begin{array}{ccc}
+1 & 0 & 0\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M_{1}\ddot{q}_{1}+M_{2}\ddot{q}_{2}+C_{1}\dot{q}_{1}+C_{2}\dot{q}_{23}+G_{1}=B_{1}u$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ddot{q}_{1}=\frac{1}{M_{1}}\left(B_{1}u-M_{2}\ddot{q}_{2}-C_{1}\dot{q}_{1}-C_{2}\dot{q}_{23}-G_{1}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M_{3}\ddot{q}_{1}+M_{3}\ddot{q}_{2}+C_{3}\dot{q}_{1}+C_{4}\dot{q}_{23}+G_{2}=B_{2}u$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M_{3}\frac{1}{M_{1}}\left(B_{1}u-M_{2}\ddot{q}_{2}-C_{1}\dot{q}_{1}-C_{2}\dot{q}_{23}-G_{1}\right)+M_{3}\ddot{q}_{2}+C_{3}\dot{q}_{1}+C_{4}\dot{q}_{23}+G_{2}=B_{2}u$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(M_{3}-\frac{M_{3}}{M_{1}}M_{2}\right)\ddot{q}_{2}+\underbrace{\left(C_{3}-\frac{M_{3}}{M_{1}}C_{1}\right)\dot{q}_{1}}_{\text{must be zero}}+\left(C_{4}-\frac{M_{3}}{M_{1}}C_{2}\right)\dot{q}_{23}+\left(G_{2}-\frac{M_{3}}{M_{1}}G_{1}\right)=\left(B_{2}-\frac{M_{3}}{M_{1}}B_{1}\right)u$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(M_{1}M_{3}-M_{3}M_{2}\right)\ddot{q}_{2}+\left(M_{1}C_{4}-M_{3}C_{2}\right)\dot{q}_{23}+\left(M_{1}G_{2}-M_{3}G_{1}\right)=\left(M_{1}B_{2}-M_{3}B_{1}\right)u$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\Gamma_{ijk}=\frac{1}{2}\left(\frac{\partial g_{ij}}{\partial q^{k}}+\frac{\partial g_{ik}}{\partial q^{j}}-\frac{\partial g_{jk}}{\partial q^{i}}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D_{kij}=\frac{\partial g_{ij}}{\partial q^{k}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D_{jik}=\frac{\partial g_{ik}}{\partial q^{j}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D_{ijk}\equiv\frac{\partial g_{jk}}{\partial q^{i}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\Gamma_{ijk}=\frac{1}{2}\left(D_{kij}+D_{jik}-D_{ijk}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Матрица 
+\begin_inset Formula $C$
+\end_inset
+
+ определена не однозначно, есть класс эквивалентности матриц 
+\begin_inset Formula $C$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+C_{ij}=\alpha\Gamma_{ijk}\dot{q}^{k}+\left(1-\alpha\right)\Gamma_{ikj}\dot{q}^{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

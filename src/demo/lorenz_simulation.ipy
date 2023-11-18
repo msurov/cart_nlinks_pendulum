@@ -1,0 +1,28 @@
+#%%
+
+from common.simulation import simulate
+from common.lorenz_attractor import lorenz_attractor
+import numpy as np
+import matplotlib.pyplot as plt
+
+def smooth_sign(x):
+  return x / (np.abs(x) + 1e-3)
+
+def simulate_lorenz():
+  inp = lambda t, _: [10. * smooth_sign(np.sin(t))]
+  sys = lorenz_attractor(sigma=10., rho=28., beta=8/3)
+  st0 = np.array([2., 1., 1.])
+  simres = simulate(sys, inp, [0., 50.], st0, 1e-3)
+  ax = plt.subplot(121)
+  plt.plot(simres.x[:,0], simres.x[:,2], '-', alpha=1.)
+  plt.grid(True)
+  plt.subplot(122, sharex=ax)
+  plt.plot(simres.x[:,0], simres.x[:,1], '-', alpha=1.)
+  plt.grid(True)
+  plt.tight_layout()
+  plt.show()
+
+if __name__ == '__main__':
+  simulate_lorenz()
+
+# %%
