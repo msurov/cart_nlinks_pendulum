@@ -1,146 +1,49 @@
 #%%
 
-from dataclasses import dataclass
-from common.mechsys import MechanicalSystem
-from motion_planner.reduced_system import get_reduced_system
-from sym_dynamics.dynamics import get_cart_pend_dynamics, CartPendParameters
-from IPython.display import display
-import numpy as np
-from scipy.integrate import solve_ivp
-import sympy as sy
+from motion_planner.servo_connection_planner import find_sample_trajectory
 import matplotlib.pyplot as plt
-from common.integrate import solve_periodic_ivp
-
-@dataclass(frozen=True, slots=True)
-class SymFunction:
-  expr : sy.Tuple
-  arg : sy.Symbol
-
-
-def make_numeric(fun : SymFunction) -> callable:
-  return sy.lambdify(fun.arg, fun.expr)
-
-@dataclass(frozen=True, slots=True)
-class ZeroDynamics:
-  argument : sy.Symbol
-  alpha : sy.Expr
-  beta : sy.Expr
-  gamma : sy.Expr
-
-@dataclass(frozen=True, slots=True)
-class DynamicalSystemTrajectory:
-  t : np.ndarray
-  x : np.ndarray
-  dx : np.ndarray | None
-  u : np.ndarray | None
-
-@dataclass(frozen=True, slots=True)
-class DynamicalSystemPeriodicTrajectory(DynamicalSystemTrajectory):
-  period : float
-  periodicity_deviation : np.ndarray
-
-
-def apply_servo_connection(
-    sys : MechanicalSystem,
-    servo_connection : SymFunction
-  ) -> ZeroDynamics:
-  """
-  """
-  Q = sy.Matrix(servo_connection.expr)
-  dQ = Q.diff(servo_connection.arg)
-  ddQ = dQ.diff(servo_connection.arg)
-
-  M = sys.M.subs(zip(sys.q, Q))
-  C = sys.C.subs(zip(sys.dq, dQ))
-  C = C.subs(zip(sys.q, Q))
-  G = sys.G.subs(zip(sys.q, Q))
-  B = sys.B.subs(zip(sys.q, Q))
-  B_perp = sy.Matrix([[B[1,0], -B[0,0]]])
-
-  alpha = (B_perp @ M @ dQ)[0,0]
-  beta = (B_perp @ (M @ ddQ + C @ dQ))[0,0]
-  gamma = (B_perp @ G)[0,0]
-
-  alpha = sy.simplify(alpha)
-  beta = sy.simplify(beta)
-  gamma = sy.simplify(gamma)
-
-  return ZeroDynamics(
-    argument = servo_connection.arg,
-    alpha = alpha,
-    beta = beta,
-    gamma = gamma
-  )
-
-def compute_zero_dynamics_trajectory(
-    zero_dynamics : ZeroDynamics,
-    initial_position : np.ndarray,
-    duration : float,
-    step : float = 0.01
-  ) -> DynamicalSystemPeriodicTrajectory:
-  """
-  """
-  alpha = zero_dynamics.alpha
-  beta = zero_dynamics.beta
-  gamma = zero_dynamics.gamma
-  speed = sy.Dummy('d' + zero_dynamics.argument.name)
-  rhs_expr = sy.Tuple(speed, (-beta * speed**2 - gamma) / alpha)
-  rhs_fun = sy.lambdify((zero_dynamics.argument, speed), rhs_expr)
-
-  def sys(t, st):
-    dst = rhs_fun(*st)
-    return np.array(dst)
-  sol = solve_periodic_ivp(sys, 0., [initial_position, 0.], step, 
-                     duration, max_step=1e-3, atol=1e-9, rtol=1e-9, nsteps=100)
-  ddx = np.array([rhs_fun(*e)[1] for e in sol.x])
-  return DynamicalSystemPeriodicTrajectory(
-    t = sol.t,
-    x = sol.x,
-    dx = ddx,
-    u = None,
-    period = sol.period,
-    periodicity_deviation = sol.periodicity_deviation
-  )
-
-def get_original_system_trajectory(
-    zero_dynamics_traj : DynamicalSystemPeriodicTrajectory,
-    servo_connection : SymFunction
-  ) -> DynamicalSystemPeriodicTrajectory:
-  R"""
-  """
-  servo_connection.arg
-  servo_connection.expr
-
-  zero_dynamics_traj.t
-  zero_dynamics_traj.x
-  zero_dynamics_traj.dx
+from sym_dynamics.dynamics import CartPendParameters
+import sympy as sy
 
 
 def test():
-  m = sy.Symbol('m', positive=True, real=True)
-  g = sy.Symbol('g', positive=True, real=True)
-  l = sy.Symbol('l', positive=True, real=True)
   par = CartPendParameters(
     link_lengths = [sy.sympify(1), sy.sympify(1)],
     mass_center = [sy.sympify(1)/2, sy.sympify(1)/2],
-    masses = [sy.sympify(1), sy.sympify(1), sy.sympify(1)],
-    gravity_accel = sy.sympify(1)
+    masses = [sy.sympify(1) / 8, sy.sympify(1) / 8, sy.sympify(1) / 8],
+    gravity_accel = sy.sympify(10)
   )
-  dynamics = get_cart_pend_dynamics(par, simplify=True)
-  reduced = get_reduced_system(dynamics, simplify=True)
+  traj = find_sample_trajectory(par)
 
-  phi = sy.Symbol(R'\phi', real=True)
-  k = sy.sympify(3) / 2
-  connection = SymFunction(
-    expr = sy.Tuple(k * phi, phi),
-    arg = phi
-  )
+  fig, axes = plt.subplots(2, 2)
+  plt.sca(axes[0,0])
+  plt.grid(True)
+  plt.plot(traj.t, traj.q)
+  plt.xlabel('$t$')
+  plt.legend([R'$x$', R'$\theta_1$', R'$\theta_2$'])
 
-  zero_dynamics = apply_servo_connection(reduced, connection)
-  zero_dynamics_traj = compute_zero_dynamics_trajectory(zero_dynamics, 0.5, 6.0, step=1e-3)
-  print(zero_dynamics_traj)
+  plt.sca(axes[0,1])
+  plt.grid(True)
+  plt.plot(traj.q[:,2], traj.q[:,0], label=R'$x$')
+  plt.plot(traj.q[:,2], traj.q[:,1], label=R'$\theta_1$')
+  plt.xlabel(R'$\theta_2$')
 
+  plt.sca(axes[1,0])
+  plt.grid(True)
+  plt.plot(traj.t, traj.dq)
+  plt.legend([R'$\dot x$', R'$\dot\theta_1$', R'$\dot\theta_2$'])
+  plt.xlabel('$t$')
 
-test()
+  plt.sca(axes[1,1])
+  plt.grid(True)
+  plt.plot(traj.t, traj.u)
+  plt.legend(['$u$'])
+  plt.xlabel(R'$t$')
+
+  plt.tight_layout()
+  plt.show()
+
+if __name__ == '__main__':
+  test()
 
 # %%

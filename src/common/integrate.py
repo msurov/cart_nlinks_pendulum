@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.integrate import ode
+from scipy.integrate import ode, solve_ivp
 from dataclasses import dataclass
 from typing import Callable
 
@@ -13,6 +13,7 @@ class ODESolution:
 class ODEPeriodicSolution(ODESolution):
   period : float
   periodicity_deviation : np.ndarray
+
 
 def segment_point_distance(seg : tuple[np.ndarray], pt : np.ndarray) -> tuple[float, float]:
   p1, p2 = seg
@@ -117,3 +118,16 @@ def solve_periodic_ivp(
     period = tend - tstart,
     periodicity_deviation = periodicity_deviation
   )
+
+def integrate_twice(
+    f : Callable[[float], float],
+    t : np.ndarray,
+    **integrator_args
+  ) -> np.ndarray:
+  """
+  Integrate the given function twice at the given knots
+  """
+  def sys(t, x):
+    return np.array([x[1], f(t)])
+  sol = solve_ivp(sys, [t[0], t[-1]], [0., 0.], t_eval=t, **integrator_args)
+  return sol.y[0], sol.y[1]

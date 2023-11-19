@@ -2,7 +2,7 @@ from sym_dynamics.dynamics import MechanicalSystem
 import sympy as sy
 
 
-def get_reduced_system(dynamics : MechanicalSystem, simplify=False) -> MechanicalSystem:
+def get_subsystem(dynamics : MechanicalSystem, simplify=False) -> MechanicalSystem:
   M = dynamics.M
   C = dynamics.C
   G = dynamics.G
@@ -41,7 +41,7 @@ def get_reduced_system(dynamics : MechanicalSystem, simplify=False) -> Mechanica
   return MechanicalSystem(
       u = dynamics.u,
       q = q[1:],
-      dq = dq[1:],
+      dq = dq[1:,0],
       M = Mr,
       C = Cr,
       G = Gr,
