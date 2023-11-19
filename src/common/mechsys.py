@@ -18,6 +18,13 @@ class MechanicalSystem:
   G : sy.Matrix
   B : sy.Matrix
 
+  @property
+  def qdim(self):
+    return len(self.q)
+
+  @property
+  def udim(self):
+    return self.u.shape[0]
 
 def get_numeric_dynamics(mechsys : MechanicalSystem) -> Callable[[float,np.ndarray,np.ndarray],np.ndarray]:
   """
