@@ -9,7 +9,16 @@ import numpy as np
 from scipy.integrate import solve_ivp
 import sympy as sy
 import matplotlib.pyplot as plt
+from common.integrate import solve_periodic_ivp
 
+@dataclass(frozen=True, slots=True)
+class SymFunction:
+  expr : sy.Tuple
+  arg : sy.Symbol
+
+
+def make_numeric(fun : SymFunction) -> callable:
+  return sy.lambdify(fun.arg, fun.expr)
 
 @dataclass(frozen=True, slots=True)
 class ZeroDynamics:
@@ -18,10 +27,28 @@ class ZeroDynamics:
   beta : sy.Expr
   gamma : sy.Expr
 
-def apply_servo_connection(sys : MechanicalSystem, connection : sy.Expr, connection_arg : sy.Symbol) -> ZeroDynamics:
-  Q = sy.Matrix(connection)
-  dQ = Q.diff(connection_arg)
-  ddQ = dQ.diff(connection_arg)
+@dataclass(frozen=True, slots=True)
+class DynamicalSystemTrajectory:
+  t : np.ndarray
+  x : np.ndarray
+  dx : np.ndarray | None
+  u : np.ndarray | None
+
+@dataclass(frozen=True, slots=True)
+class DynamicalSystemPeriodicTrajectory(DynamicalSystemTrajectory):
+  period : float
+  periodicity_deviation : np.ndarray
+
+
+def apply_servo_connection(
+    sys : MechanicalSystem,
+    servo_connection : SymFunction
+  ) -> ZeroDynamics:
+  """
+  """
+  Q = sy.Matrix(servo_connection.expr)
+  dQ = Q.diff(servo_connection.arg)
+  ddQ = dQ.diff(servo_connection.arg)
 
   M = sys.M.subs(zip(sys.q, Q))
   C = sys.C.subs(zip(sys.dq, dQ))
@@ -39,13 +66,20 @@ def apply_servo_connection(sys : MechanicalSystem, connection : sy.Expr, connect
   gamma = sy.simplify(gamma)
 
   return ZeroDynamics(
-    argument = connection_arg,
+    argument = servo_connection.arg,
     alpha = alpha,
     beta = beta,
     gamma = gamma
   )
 
-def compute_trajectory(zero_dynamics : ZeroDynamics, initial_position, duration):
+def compute_zero_dynamics_trajectory(
+    zero_dynamics : ZeroDynamics,
+    initial_position : np.ndarray,
+    duration : float,
+    step : float = 0.01
+  ) -> DynamicalSystemPeriodicTrajectory:
+  """
+  """
   alpha = zero_dynamics.alpha
   beta = zero_dynamics.beta
   gamma = zero_dynamics.gamma
@@ -56,9 +90,31 @@ def compute_trajectory(zero_dynamics : ZeroDynamics, initial_position, duration)
   def sys(t, st):
     dst = rhs_fun(*st)
     return np.array(dst)
-  
-  sol = solve_ivp(sys, [0., duration], [initial_position, 0.], max_step=1e-3)
-  plt.plot(sol.y[0], sol.y[1])
+  sol = solve_periodic_ivp(sys, 0., [initial_position, 0.], step, 
+                     duration, max_step=1e-3, atol=1e-9, rtol=1e-9, nsteps=100)
+  ddx = np.array([rhs_fun(*e)[1] for e in sol.x])
+  return DynamicalSystemPeriodicTrajectory(
+    t = sol.t,
+    x = sol.x,
+    dx = ddx,
+    u = None,
+    period = sol.period,
+    periodicity_deviation = sol.periodicity_deviation
+  )
+
+def get_original_system_trajectory(
+    zero_dynamics_traj : DynamicalSystemPeriodicTrajectory,
+    servo_connection : SymFunction
+  ) -> DynamicalSystemPeriodicTrajectory:
+  R"""
+  """
+  servo_connection.arg
+  servo_connection.expr
+
+  zero_dynamics_traj.t
+  zero_dynamics_traj.x
+  zero_dynamics_traj.dx
+
 
 def test():
   m = sy.Symbol('m', positive=True, real=True)
@@ -72,12 +128,18 @@ def test():
   )
   dynamics = get_cart_pend_dynamics(par, simplify=True)
   reduced = get_reduced_system(dynamics, simplify=True)
-  variable = sy.Symbol(R'\phi', real=True)
-  # k = sy.Symbol('k', real=True)
+
+  phi = sy.Symbol(R'\phi', real=True)
   k = sy.sympify(3) / 2
-  connection = sy.Tuple(k * variable, variable)
-  zero_dynamics = apply_servo_connection(reduced, connection, variable)
-  compute_trajectory(zero_dynamics, 0.5, 6.0)
+  connection = SymFunction(
+    expr = sy.Tuple(k * phi, phi),
+    arg = phi
+  )
+
+  zero_dynamics = apply_servo_connection(reduced, connection)
+  zero_dynamics_traj = compute_zero_dynamics_trajectory(zero_dynamics, 0.5, 6.0, step=1e-3)
+  print(zero_dynamics_traj)
+
 
 test()
 

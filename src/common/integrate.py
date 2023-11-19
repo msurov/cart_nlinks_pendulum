@@ -22,6 +22,20 @@ def segment_point_distance(seg : tuple[np.ndarray], pt : np.ndarray) -> tuple[fl
   dist = np.linalg.norm(p21 * t + p1 - pt)
   return dist, t
 
+def solve_quadratic(a, b, c):
+  d = b**2 - 4 * a * c
+  if d < 0:
+    r1 = 0.5 * (-b + 1.j * np.sqrt(-d)) / a
+    r2 = 0.5 * (-b - 1.j * np.sqrt(-d)) / a
+    return r1, r2
+  elif d == 0:
+    r1 = -0.5 * b / a
+    return r1
+  else:
+    r1 = 0.5 * (-b + np.sqrt(d)) / a
+    r2 = 0.5 * (-b - np.sqrt(d)) / a
+    return r1, r2
+
 def solve_periodic_ivp(
     sys : Callable[[float, np.ndarray], np.ndarray],
     tstart : float,
@@ -80,11 +94,17 @@ def solve_periodic_ivp(
     result_x.append(x)
 
   fstart = sys(tstart, xstart)
+  f1 = sys(t, x)
+  f2 = sys(t_new, x_new)
+
   tend = t_new - np.dot(fstart, x_new - xstart) / np.dot(fstart, fstart)
   integrator.integrate(tend)
   xend = integrator.y
   periodicity_deviation = xstart - xend
   assert np.linalg.norm(periodicity_deviation) < eps, "Computations are wrong. Who knows why.."
+
+  seg = (x, xend)
+  dist, l = segment_point_distance(seg, xstart)
 
   result_t.append(tend)
   result_x.append(np.copy(xstart))
