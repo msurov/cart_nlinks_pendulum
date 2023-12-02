@@ -1,0 +1,608 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{p}_{k} & =-\frac{\partial L}{\partial q^{k}}+B_{ki}u_{i}\\
+\dot{q}^{k} & =\frac{\partial L}{\partial p_{k}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\partial\psi}{\partial q^{k}}\dot{q}^{k}+\frac{\partial\psi}{\partial p_{k}}\dot{p}_{k}=\frac{\partial\psi}{\partial q^{k}}\frac{\partial L}{\partial p_{k}}-\frac{\partial\psi}{\partial p_{k}}\frac{\partial L}{\partial q^{k}}+\frac{\partial\psi}{\partial p_{k}}B_{ki}u_{i}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\psi_{q}L_{p}-\psi_{p}L_{q}+\psi_{p}Bu=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $u=\frac{\psi_{p}L_{q}-\psi_{q}L_{p}}{\psi_{p}B}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+я получил однозначное выражение для управления
+\end_layout
+
+\begin_layout Standard
+то есть, чтобы сделать поверхность 
+\begin_inset Formula $\psi\left(p,q\right)=0$
+\end_inset
+
+ инвариантной, нужно подать управление 
+\begin_inset Formula $u=\frac{\psi_{p}L_{q}-\psi_{q}L_{p}}{\psi_{p}B}$
+\end_inset
+
+.
+ Что остаётся?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+B_{\perp}\dot{p} & =-B_{\perp}L_{q}\\
+\dot{q} & =L_{p}
+\end{align*}
+
+\end_inset
+
+Всё движение происходит на многообразии 
+\begin_inset Formula $\psi\left(p,q\right)=0$
+\end_inset
+
+.
+ Какие координаты на нём выбрать, чтобы получить систему второго порядка?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x\equiv\left(p,q\right)=\left(P\left(\xi\right),Q\left(\xi\right)\right)$
+\end_inset
+
+, 
+\begin_inset Formula $\xi\in\mathbb{R}^{3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\psi\left(P,Q\right)=0\,\forall\,\xi$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+B_{\perp}P_{\xi}\dot{\xi} & =-B_{\perp}L_{q}\\
+Q_{\xi}\dot{\xi} & =L_{p}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(\begin{array}{c}
+B_{\perp}P_{\xi}\\
+Q_{\xi}
+\end{array}\right)\dot{\xi}=\left(\begin{array}{c}
+-B_{\perp}L_{q}\\
+L_{p}
+\end{array}\right)=\left(\begin{array}{c}
+-B_{\perp}\frac{1}{2}\frac{\partial m^{ij}}{\partial q^{k}}P_{i}P_{j}+B_{\perp}\frac{\partial U}{\partial q^{k}}\\
+M^{-1}P
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+выбрать специальные 
+\begin_inset Formula $\xi,$
+\end_inset
+
+ чтобы они сразу удовлетворили одному из уравнений
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+q & =Q\left(\xi\right)\\
+p & =P\left(\xi\right)\\
+\dot{q} & =L_{p}=M^{-1}P
+\end{align*}
+
+\end_inset
+
+или чтобы система 3-х уравнений разбилась на 2 подсистемы второго и первого
+ порядков.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Q_{\xi}\dot{\xi}=M^{-1}P
+\]
+
+\end_inset
+
+Как выбрать 
+\begin_inset Formula $\xi\in\mathbb{R}^{2}$
+\end_inset
+
+, чтобы они сразу удовлетворяли одному из уравнений
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+B_{\perp}P_{\xi}\dot{\xi} & =-B_{\perp}L_{q}\\
+Q_{\xi}\dot{\xi} & =L_{p}
+\end{align*}
+
+\end_inset
+
+Маятник на тележке
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{\nu} & =u\\
+\dot{\omega} & =\alpha\left(\nu,\omega,x,\theta\right)\\
+\dot{x} & =\beta\left(\nu,\omega,x,\theta\right)\\
+\dot{\theta} & =\gamma\left(\nu,\omega,x,\theta\right)
+\end{align*}
+
+\end_inset
+
+Накладываю ограничение в виде 
+\begin_inset Formula $\psi\left(\nu,\omega,x,\theta\right)=0$
+\end_inset
+
+.
+ Как выписать динамику в локальных координатах на нём? В параметрическом
+ виде 
+\begin_inset Formula 
+\begin{align*}
+v & =v\left(\xi\right)\\
+\omega & =\omega\left(\xi\right)\\
+x & =x\left(\xi\right)\\
+\theta & =\theta\left(\xi\right)
+\end{align*}
+
+\end_inset
+
+тогда 
+\begin_inset Formula 
+\begin{align*}
+u & =\frac{\partial v}{\partial\xi}\dot{\xi}\\
+\alpha\left(\nu,\omega,x,\theta\right) & =\frac{\partial\omega}{\partial\xi}\dot{\xi}\\
+\beta\left(\nu,\omega,x,\theta\right) & =\frac{\partial x}{\partial\xi}\dot{\xi}\\
+\gamma\left(\nu,\omega,x,\theta\right) & =\frac{\partial\theta}{\partial\xi}\dot{\xi}
+\end{align*}
+
+\end_inset
+
+Для простоты.
+ Пусть 
+\begin_inset Formula $v=V\xi$
+\end_inset
+
+, 
+\begin_inset Formula $\omega=\Omega\xi$
+\end_inset
+
+, 
+\begin_inset Formula $x=X\xi$
+\end_inset
+
+, 
+\begin_inset Formula $\theta=\Theta\xi$
+\end_inset
+
+.
+ Тогда
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{\nu}=u & =V\dot{\xi}\\
+\dot{\omega}=\alpha\left(\nu,\omega,x,\theta\right) & =\Omega\dot{\xi}\\
+\dot{x}=\beta\left(\nu,\omega,x,\theta\right) & =X\dot{\xi}\\
+\dot{\theta}=\gamma\left(\nu,\omega,x,\theta\right) & =\Theta\dot{\xi}
+\end{align*}
+
+\end_inset
+
+Первое можем выполнить 
+\begin_inset Formula $u=V\dot{\xi}$
+\end_inset
+
+, остаются
+\begin_inset Formula 
+\begin{align*}
+\alpha\left(\nu,\omega,x,\theta\right) & =\Omega\dot{\xi}\\
+\beta\left(\nu,\omega,x,\theta\right) & =X\dot{\xi}\\
+\gamma\left(\nu,\omega,x,\theta\right) & =\Theta\dot{\xi}
+\end{align*}
+
+\end_inset
+
+Получается матрица 
+\begin_inset Formula $\Xi=\left(\begin{array}{c}
+\Omega\\
+X\\
+\Theta
+\end{array}\right)\in\mathbb{R}^{3\times2}$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\Xi\dot{\xi}=\left(\begin{array}{c}
+\alpha\\
+\beta\\
+\gamma
+\end{array}\right)
+\]
+
+\end_inset
+
+Тут слишком много ограничений для 
+\begin_inset Formula $\xi$
+\end_inset
+
+.
+ Чтобы системы была разрешима единственным образом нужно потребовать, чтобы
+ 3 уравнения превратились в 2.
+ Условно, уравнения
+\begin_inset Formula 
+\begin{align*}
+\alpha\left(\nu,\omega,x,\theta\right) & =\Omega\dot{\xi}\\
+\gamma\left(\nu,\omega,x,\theta\right) & =\Theta\dot{\xi}
+\end{align*}
+
+\end_inset
+
+были эквивалентны.
+ То есть 
+\begin_inset Formula $\Omega||\Theta$
+\end_inset
+
+ и 
+\begin_inset Formula $\frac{\alpha\left(\nu,\omega,x,\theta\right)}{\gamma\left(\nu,\omega,x,\theta\right)}=\frac{\left\Vert \Omega\right\Vert }{\left\Vert \Theta\right\Vert }$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+Допустим 
+\begin_inset Formula $\xi\in\mathbb{R}^{3}.$
+\end_inset
+
+ Тогда
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\alpha\left(\nu,\omega,x,\theta\right) & =\Omega\dot{\xi}\\
+\beta\left(\nu,\omega,x,\theta\right) & =X\dot{\xi}\\
+\gamma\left(\nu,\omega,x,\theta\right) & =\Theta\dot{\xi}
+\end{align*}
+
+\end_inset
+
+Я хочу понизить порядок системы до второго.
+ 
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{p}_{k} & =-\frac{\partial L}{\partial q^{k}}+B_{ki}u_{i}\\
+\dot{q}^{k} & =\frac{\partial L}{\partial p_{k}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L=\frac{1}{2}p^{T}M^{-1}p-U$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\partial L}{\partial p}=M^{-1}p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\partial L}{\partial p_{x}}=M_{11}^{-1}p_{x}+M_{12}^{-1}p_{\theta}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\partial L}{\partial p_{\theta}}=M_{21}^{-1}p_{x}+M_{22}^{-1}p_{\theta}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\partial L}{\partial\theta}=\frac{1}{2}p^{T}\frac{\partial M^{-1}}{\partial\theta}p-\frac{\partial U}{\partial\theta}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\partial L}{\partial x}=\frac{1}{2}p^{T}\frac{\partial M^{-1}}{\partial x}p-\frac{\partial U}{\partial x}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{p}_{x} & =-\frac{1}{2}p^{T}\frac{\partial M^{-1}}{\partial x}p+\frac{\partial U}{\partial x}+u\\
+\dot{p}_{\theta} & =-\frac{1}{2}p^{T}\frac{\partial M^{-1}}{\partial\theta}p+\frac{\partial U}{\partial\theta}\\
+\dot{x} & =M_{11}^{-1}p_{x}+M_{12}^{-1}p_{\theta}\\
+\dot{\theta} & =M_{21}^{-1}p_{x}+M_{22}^{-1}p_{\theta}
+\end{align*}
+
+\end_inset
+
+Я задаю связь 
+\begin_inset Formula 
+\begin{align*}
+\left(p_{\theta},x,\theta\right) & =\pi\left(\xi\right)\\
+n\left(\xi\right)\frac{\partial\pi\left(\xi\right)}{\partial\xi} & =0
+\end{align*}
+
+\end_inset
+
+тогда
+\begin_inset Formula 
+\[
+n\left(\xi\right)\left(\begin{array}{c}
+-\frac{1}{2}p^{T}\frac{\partial M^{-1}}{\partial\theta}p+\frac{\partial U}{\partial\theta}\\
+M_{11}^{-1}p_{x}+M_{12}^{-1}p_{\theta}\\
+M_{21}^{-1}p_{x}+M_{22}^{-1}p_{\theta}
+\end{array}\right)=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\begin_inset Formula 
+\begin{align*}
+\dot{p}_{\theta} & =-p^{T}\frac{\partial M^{-1}}{\partial\theta}p+U\\
+\dot{x} & =M_{1*}^{-1}p\\
+\dot{\theta} & =M_{2*}^{-1}p
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+относительно 
+\begin_inset Formula $p_{\theta}$
+\end_inset
+
+ разрешить проблематично
+\end_layout
+
+\begin_layout Standard
+=> разрешить относительно другой переменной
+\end_layout
+
+\begin_layout Standard
+=> не разрешать, решать ДУ в избыточных координатах с дополнительным алгебраичес
+ким условием...
+ уравнение 3-го порядка с первым интегралом.
+ Это значит, что поведение траекторий тоже ограничено на самом деле...
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $J\dot{\xi}=f\left(\xi,z\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Просто более сложный способ вычисления правой части:
+\end_layout
+
+\begin_layout Standard
+для заданного 
+\begin_inset Formula $\xi$
+\end_inset
+
+ находим 
+\begin_inset Formula $z$
+\end_inset
+
+ такой, чтобы
+\end_layout
+
+\begin_layout Standard
+* либо ДУ для него записать
+\end_layout
+
+\begin_layout Standard
+* либо решать уравнение алгебраически.
+ Тут единственный минус – можно ненароком перепрыгнуть с одного решения
+ на другое(
+\end_layout
+
+\begin_layout Standard
+если функция является решением квадратного уравнения
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+ay^{2}+by+c=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+тогда она удовлетворяет ДУ
+\begin_inset Formula 
+\[
+a'y^{2}+2ayy'+b'y+by'+c'=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y'=\frac{a'y^{2}+b'y+c'}{2ay+b}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $-p^{T}\frac{\partial M^{-1}}{\partial\theta}p+U$
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

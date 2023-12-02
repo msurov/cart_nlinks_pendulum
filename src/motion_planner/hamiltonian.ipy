@@ -1,0 +1,176 @@
+#%%
+
+from sym_dynamics.dynamics import (
+  get_cart_pend_dynamics,
+  CartPendParameters
+)
+import numpy as np
+import sympy as sy
+from IPython.display import display
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+from vis.anim import animate
+
+
+def solve_quadratic(eq, arg):
+  """
+    ax**2 + bx + c = 0
+  """
+  poly = sy.Poly(eq, arg)
+  poly = poly.doit()
+  a,b,c = poly.all_coeffs()
+  x1 = (-b + sy.sqrt(b**2 - 4 * a * c)) / (2 * a)
+  x2 = (-b - sy.sqrt(b**2 - 4 * a * c)) / (2 * a)
+  return sy.Piecewise(
+    (-c / b, sy.Abs(a) < 1e-5),
+    (x1, b > 0),
+    (x2, True)
+  )
+
+def cross(a, b):
+  ax,ay,az = a
+  bx,by,bz = b
+  return sy.Matrix([
+    ay * bz - az * by,
+    -ax * bz + az * bx,
+    ax * by - ay * bx
+  ])
+
+def test():
+  rat = sy.Rational
+  par = CartPendParameters(
+    link_lengths = [sy.sympify(1)],
+    mass_center = [sy.sympify(1)/2],
+    masses = [rat(1, 8), rat(1, 8)],
+    gravity_accel = sy.sympify(10)
+  )
+  sys = get_cart_pend_dynamics(par, simplify=True)
+  q = sys.q
+  p_ = sy.symbols(R'\nu \omega')
+  p = sy.Matrix(p_)
+  Minv = sys.M.inv()
+  Minv = sy.simplify(Minv)
+  L = (p.T @ Minv @ p)[0,0] - sys.U
+  L = sy.simplify(L)
+
+  Lp = sy.Matrix([L]).jacobian(p)
+  Lp = sy.simplify(Lp)
+  Lq = sy.Matrix([L]).jacobian(q)
+  Lq = sy.simplify(Lq)
+
+  xi1,xi2 = sy.symbols(R'\xi_1 \xi_2', real=True)
+  pi = sy.Matrix([
+    3. * sy.cos(xi1),
+    xi2 * sy.sin(xi1),
+    2 + 0.3 * sy.sin(xi1),
+  ])
+  J = pi.jacobian([xi1, xi2])
+  c1 = J[:,0]
+  c2 = J[:,1]
+  n = cross(c1, c2)
+  rhs3 = sy.Matrix([-Lq[1], Lp[0], Lp[1]])
+  eq = n.T @ rhs3
+
+  sol = solve_quadratic(eq, p[0])
+
+  rhs2 = J.pinv() @ rhs3.subs(p[0], sol)
+  rhs2 = rhs2.subs(p[1], pi[0])
+  rhs2 = rhs2.subs(q[0], pi[1])
+  rhs2 = rhs2.subs(q[1], pi[2])
+
+  fun = sy.lambdify((xi1, xi2), (*rhs2,))
+
+  # xi1_arr = np.linspace(1., 4., 20)
+  # xi2_arr = np.linspace(0.1, 1.0, 20)
+  # n1 = len(xi1_arr)
+  # n2 = len(xi2_arr)
+  # u1 = np.zeros((n1, n2))
+  # u2 = np.zeros((n1, n2))
+
+  # for i in range(len(xi1_arr)):
+  #   for j in range(len(xi2_arr)):
+  #     xi1 = xi1_arr[i]
+  #     xi2 = xi2_arr[j]
+  #     u1[i,j], u2[i,j]  = fun(xi1, xi2)
+  #     print(xi1, xi2, u1[i,j], u2[i,j])
+
+  # plt.streamplot(xi1_arr, xi2_arr, u1, u2)
+
+  def reduced_rhs(t, st):
+    return fun(*st)
+  
+  # for p in np.arange(-2., 2.1, 0.25):
+  sol = solve_ivp(reduced_rhs, [0., 0.5], [0.1, 2.0], max_step=1e-3)
+  plt.plot(sol.y[0], sol.y[1], '--', color='b', alpha=0.5)
+
+  plt.show()
+
+def test2():
+  rat = sy.Rational
+  par = CartPendParameters(
+    link_lengths = [sy.sympify(1)],
+    mass_center = [sy.sympify(1)/2],
+    masses = [rat(1, 8), rat(1, 8)],
+    gravity_accel = sy.sympify(10)
+  )
+  sys = get_cart_pend_dynamics(par, simplify=True)
+
+  x,theta = sys.q
+  # a1 = x + sy.sin(theta)
+  # a2 = x * sy.cos(theta) + sy.sin(theta) * sy.cos(theta) - sy.sin(theta) / 2
+  a1 = 1.
+  a2 = 1.3
+  Minv = sys.M.inv()
+  a = sy.Matrix([[a1, a2]]) @ Minv
+  S = sy.Matrix([
+    [0, -1],
+    [1, 0]
+  ])
+  n = (S @ a.T).simplify()
+  Bperp = sys.B.T @ S
+  xi = sy.Symbol(R'\xi', real=True)
+  p = n * xi
+  display(sys.M)
+  return
+  Jn = n.jacobian(sys.q)
+  L = (p.T @ Minv @ p / 2)[0,0] - sys.U
+  Lq = sy.Matrix([L]).jacobian(sys.q).T
+  dxi = -Bperp @ (Lq + Jn @ Minv @ n * xi**2) / (Bperp @ n)[0,0]
+  dq = Minv @ n * xi
+  sys1 = sy.lambdify((xi, *sys.q), (*dxi, *dq))
+
+  def rhs1(_, st):
+    dst = sys1(*st)
+    return np.array(dst)
+
+  sol1 = solve_ivp(rhs1, [0., 2.0], [0.01, 1.0, -0.769], max_step=1e-3)
+
+  plt.subplot(211)
+  plt.plot(sol1.t, sol1.y[0])
+  plt.subplot(212)
+  plt.plot(sol1.y[1], sol1.y[2])
+  plt.plot(sol1.y[1,0], sol1.y[2,0], 'o')
+  plt.grid(True)
+  plt.show()
+
+  a = animate(sol1.t, sol1.y[1:3,:].T, par)
+  a.save('fig/anim.gif')
+
+
+def test3():
+  rat = sy.Rational
+  par = CartPendParameters(
+    link_lengths = [sy.sympify(1)],
+    mass_center = [sy.sympify(1)/2],
+    masses = [rat(1, 8), rat(1, 8)],
+    gravity_accel = sy.sympify(10)
+  )
+  sys = get_cart_pend_dynamics(par, simplify=True)
+  x,theta = sys.q
+  ptheta = 0.1 * sy.sin(theta)
+  
+
+if __name__ == '__main__':
+  test2()
+
+# %%

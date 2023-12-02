@@ -1,0 +1,487 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Separable Lagrange Equations
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $L\left(x,y,\dot{x},\dot{y}\right)$
+\end_inset
+
+ does not depend on 
+\begin_inset Formula $x$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+L_{x}=0.
+\]
+
+\end_inset
+
+Does it mean that Lagrange equations do not contain 
+\begin_inset Formula $x,\dot{x}$
+\end_inset
+
+? Let the lagrangian is natural 
+\begin_inset Formula 
+\[
+L=\frac{1}{2}m_{ij}\dot{q}^{i}\dot{q}^{j}-U
+\]
+
+\end_inset
+
+then
+\begin_inset Formula 
+\begin{align*}
+L_{q^{k}} & =\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{k}}\dot{q}^{i}\dot{q}^{j}-\frac{\partial U}{\partial q^{k}}\\
+L_{\dot{q}^{k}} & =m_{ki}\dot{q}^{i}\\
+\frac{d}{dt}L_{\dot{q}^{k}} & =m_{ki}\ddot{q}^{i}+\frac{\partial m_{ki}}{\partial q^{j}}\dot{q}^{i}\dot{q}^{j}
+\end{align*}
+
+\end_inset
+
+Then the equation is 
+\begin_inset Formula 
+\[
+m_{ki}\ddot{q}^{i}+\left(\frac{\partial m_{ki}}{\partial q^{j}}-\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{k}}\right)\dot{q}^{i}\dot{q}^{j}+\frac{\partial U}{\partial q^{k}}=f_{k}.
+\]
+
+\end_inset
+
+I have to write down the both equations.
+ Does the term 
+\begin_inset Formula 
+\[
+\left(\frac{\partial m_{ki}}{\partial q^{j}}-\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{k}}\right)\dot{q}^{i}\dot{q}^{j}
+\]
+
+\end_inset
+
+contan 
+\begin_inset Formula $\dot{x}\equiv\dot{q}^{1}$
+\end_inset
+
+? In explicit form
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+M & =\left(\begin{array}{cc}
+m_{11} & m_{12}\\
+m_{21} & m_{22}
+\end{array}\right)\\
+M_{x} & =0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+For 
+\begin_inset Formula $k=1$
+\end_inset
+
+ will have
+\begin_inset Formula 
+\begin{align*}
+\left(\frac{\partial m_{1i}}{\partial q^{j}}-\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{1}}\right)\dot{q}^{i}\dot{q}^{j}\\
+\frac{\partial m_{11}}{\partial q^{1}}\dot{q}^{1}\dot{q}^{1}+\frac{\partial m_{12}}{\partial q^{1}}\dot{q}^{2}\dot{q}^{1}+\frac{\partial m_{11}}{\partial q^{2}}\dot{q}^{1}\dot{q}^{2}+\frac{\partial m_{12}}{\partial q^{2}}\dot{q}^{2}\dot{q}^{2}\\
+\frac{\partial m_{11}}{\partial q^{2}}\dot{q}^{1}\dot{q}^{2}+\frac{\partial m_{12}}{\partial q^{2}}\dot{q}^{2}\dot{q}^{2}
+\end{align*}
+
+\end_inset
+
+The requirement is 
+\begin_inset Formula $\frac{\partial m_{11}}{\partial q^{2}}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+For 
+\begin_inset Formula $k=2$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\left(\frac{\partial m_{2i}}{\partial q^{j}}-\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{2}}\right)\dot{q}^{i}\dot{q}^{j} & =\\
+\frac{\partial m_{2i}}{\partial q^{j}}\dot{q}^{i}\dot{q}^{j}-\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{2}}\dot{q}^{i}\dot{q}^{j} & =\\
+\frac{\partial m_{2i}}{\partial q^{2}}\dot{q}^{i}\dot{q}^{2}-\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{2}}\dot{q}^{i}\dot{q}^{j} & =\\
+-\frac{1}{2}\frac{\partial m_{11}}{\partial q^{2}}\dot{q}^{1}\dot{q}^{1}-\frac{1}{2}\frac{\partial m_{22}}{\partial q^{2}}\dot{q}^{2}\dot{q}^{2}+\frac{\partial m_{22}}{\partial q^{2}}\dot{q}^{2}\dot{q}^{2}
+\end{align*}
+
+\end_inset
+
+and we have the same requirement 
+\begin_inset Formula $\frac{\partial m_{11}}{\partial q^{2}}=0.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, there are 2 conditions for lagrangian:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $L$
+\end_inset
+
+ does not depend on 
+\begin_inset Formula $q^{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $m_{11}$
+\end_inset
+
+ is contant.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Coriolis matrix
+\end_layout
+
+\begin_layout Standard
+The matrix 
+\begin_inset Formula $C$
+\end_inset
+
+ is defined as 
+\begin_inset Formula 
+\[
+C_{kj}=\left(\frac{\partial m_{ki}}{\partial q^{j}}-\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{k}}\right)\dot{q}^{i}
+\]
+
+\end_inset
+
+or 
+\begin_inset Formula 
+\[
+C_{kj}=\left(\frac{\partial m_{kj}}{\partial q^{i}}-\frac{1}{2}\frac{\partial m_{ji}}{\partial q^{k}}\right)\dot{q}^{i}
+\]
+
+\end_inset
+
+These matrices differ, but the quadratic form 
+\begin_inset Formula $C_{kj}\dot{q}^{j}$
+\end_inset
+
+ will be the same in the both cases.
+ The question: What is the equivalence class of matrix 
+\begin_inset Formula $C$
+\end_inset
+
+? For example, I can write 
+\begin_inset Formula 
+\[
+C=\frac{1}{2}\left(\frac{\partial m_{ki}}{\partial q^{j}}-\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{k}}\right)\dot{q}^{i}+\frac{1}{2}\left(\frac{\partial m_{kj}}{\partial q^{i}}-\frac{1}{2}\frac{\partial m_{ji}}{\partial q^{k}}\right)\dot{q}^{i}
+\]
+
+\end_inset
+
+and the quadratic form will be the same.
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula 
+\begin{align*}
+C_{kj} & =\frac{1}{2}\left(\frac{\partial m_{ki}}{\partial q^{j}}+\frac{\partial m_{kj}}{\partial q^{i}}-\frac{\partial m_{ji}}{\partial q^{k}}\right)\dot{q}^{i}\\
+C_{kj} & =\left(p\frac{\partial m_{ki}}{\partial q^{j}}+\left(1-p\right)\frac{\partial m_{kj}}{\partial q^{i}}-\frac{1}{2}\frac{\partial m_{ji}}{\partial q^{k}}\right)\dot{q}^{i}
+\end{align*}
+
+\end_inset
+
+can I specify such a 
+\begin_inset Formula $p$
+\end_inset
+
+ that
+\end_layout
+
+\begin_layout Itemize
+first column of 
+\begin_inset Formula $C$
+\end_inset
+
+ is zero
+\end_layout
+
+\begin_layout Itemize
+first row of 
+\begin_inset Formula $C$
+\end_inset
+
+ is zero
+\end_layout
+
+\begin_layout Standard
+Require 
+\begin_inset Formula $C_{1j}=0$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left(p\frac{\partial m_{1i}}{\partial q^{j}}+\left(1-p\right)\frac{\partial m_{1j}}{\partial q^{i}}-\frac{1}{2}\frac{\partial m_{ji}}{\partial q^{1}}\right)\dot{q}^{i} & =0\\
+p\frac{\partial m_{1i}}{\partial q^{j}}\dot{q}^{i}+\left(1-p\right)\frac{\partial m_{1j}}{\partial q^{i}}\dot{q}^{i}+\left(1-p\right)\frac{\partial m_{1j}}{\partial q^{i}}\dot{q}^{i} & =0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+Если я разделяю систему на 2 части: с 
+\begin_inset Formula $x$
+\end_inset
+
+ и без 
+\begin_inset Formula $x$
+\end_inset
+
+, то для части с 
+\begin_inset Formula $x$
+\end_inset
+
+ ДУ будет
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ddot{x}=f\left(\theta_{2},\dot{\theta}_{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Если потребовать 
+\begin_inset Formula $x=X\left(\theta_{2}\right)$
+\end_inset
+
+, то
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{x}=\frac{dX}{d\theta_{2}}\dot{\theta}_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ddot{x}=\frac{d}{dt}\frac{dX}{d\theta_{2}}\dot{\theta}_{2}=\frac{d^{2}X}{d\theta_{2}^{2}}\dot{\theta}_{2}^{2}+\frac{d}{dt}\frac{dX}{d\theta_{2}}\ddot{\theta}_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+В уравнения Лагранжа 
+\begin_inset Formula 
+\[
+m_{ki}\ddot{q}^{i}+\left(\frac{\partial m_{ki}}{\partial q^{j}}-\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{k}}\right)\dot{q}^{i}\dot{q}^{j}+\frac{\partial U}{\partial q^{k}}=f_{k}
+\]
+
+\end_inset
+
+подставляю 
+\begin_inset Formula 
+\begin{align*}
+p_{k} & \equiv\frac{\partial L}{\partial\dot{q}^{k}}=m_{ki}\dot{q}^{i}\\
+\dot{p}_{k} & =\frac{\partial m_{ki}}{\partial q^{j}}\dot{q}^{i}\dot{q}^{j}+m_{ki}\ddot{q}^{i}
+\end{align*}
+
+\end_inset
+
+получу 
+\begin_inset Formula 
+\begin{align*}
+\dot{p}_{k}-\frac{\partial m_{ki}}{\partial q^{j}}\dot{q}^{i}\dot{q}^{j}+\left(\frac{\partial m_{ki}}{\partial q^{j}}-\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{k}}\right)\dot{q}^{i}\dot{q}^{j}+\frac{\partial U}{\partial q^{k}} & =f_{k}\\
+\dot{p}_{k}=\frac{1}{2}\frac{\partial m_{ij}}{\partial q^{k}}\dot{q}^{i}\dot{q}^{j}-\frac{\partial U}{\partial q^{k}}+f_{k}\\
+\dot{p}_{k}=\frac{\partial}{\partial q^{k}}\left(\frac{1}{2}m_{ij}\dot{q}^{i}\dot{q}^{j}-U\right)+f_{k}
+\end{align*}
+
+\end_inset
+
+Подставляем 
+\begin_inset Formula 
+\begin{align*}
+L & =\frac{1}{2}m_{ij}\dot{q}^{i}\dot{q}^{j}-U\\
+ & =\frac{1}{2}p_{j}\dot{q}^{j}-U\\
+ & =\frac{1}{2}m^{ij}p_{i}p_{j}-U
+\end{align*}
+
+\end_inset
+
+тогда уравнения движения будут
+\begin_inset Formula 
+\begin{align*}
+\dot{p}_{k} & =\frac{\partial L}{\partial q^{k}}+f_{k}\\
+\dot{q}^{k} & =\frac{\partial L}{\partial p_{k}}\\
+\frac{\partial L}{\partial p_{k}} & =m^{kj}p_{j}\\
+\frac{\partial L}{\partial q^{k}} & =\frac{1}{2}\frac{\partial m^{ij}}{\partial q^{k}}p_{i}p_{j}-\frac{\partial U}{\partial q^{k}}
+\end{align*}
+
+\end_inset
+
+Я хочу задать поверзность движения 
+\begin_inset Formula 
+\[
+\phi\left(p,q\right)=0
+\]
+
+\end_inset
+
+Какая нужна сила?
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial\phi}{\partial p_{k}}\dot{p}_{k}+\frac{\partial\phi}{\partial q^{k}}\dot{q}^{k} & =0\\
+\frac{\partial\phi}{\partial p_{k}}\frac{\partial L}{\partial q^{k}}+\frac{\partial\phi}{\partial p_{k}}f_{k}+\frac{\partial\phi}{\partial q^{k}}\frac{\partial L}{\partial p_{k}} & =0\\
+\frac{\partial\phi}{\partial p_{k}}\left[\frac{1}{2}\frac{\partial m^{ij}}{\partial q^{k}}p_{i}p_{j}-\frac{\partial U}{\partial q^{k}}\right]+\frac{\partial\phi}{\partial p_{k}}f_{k}+\frac{\partial\phi}{\partial q^{k}}m^{kj}p_{j} & =0\\
+\end{align*}
+
+\end_inset
+
+Для удержания на поверхности нужна сила
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial\phi}{\partial p_{k}}f_{k}=-\frac{\partial\phi}{\partial p_{k}}\left[\frac{1}{2}\frac{\partial m^{ij}}{\partial q^{k}}p_{i}p_{j}-\frac{\partial U}{\partial q^{k}}\right]-\frac{\partial\phi}{\partial q^{k}}m^{kj}p_{j}
+\]
+
+\end_inset
+
+Дальше нужно ввести координаты на поверхности и трансверсально поверхности
+ и выписать динамику в них
+\end_layout
+
+\end_body
+\end_document

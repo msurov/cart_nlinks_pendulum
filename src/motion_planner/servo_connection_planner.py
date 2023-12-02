@@ -1,4 +1,4 @@
-from common.mechsys import MechanicalSystem
+from sym_dynamics.mechsys import MechanicalSystem
 from motion_planner.subsystem import get_subsystem
 from sym_dynamics.dynamics import (
   get_cart_pend_dynamics,
@@ -17,16 +17,14 @@ from dataclasses import dataclass
 import numpy as np
 import sympy as sy
 from scipy.interpolate import make_interp_spline
+from scipy.optimize import brentq
+import matplotlib.pyplot as plt
+from common.symfunc import SymFunction
 
-
-@dataclass(frozen=True, slots=True)
-class SymFunction:
-  expr : sy.Tuple
-  arg : sy.Symbol
 
 @dataclass(frozen=True, slots=True)
 class ReducedDyanmics:
-  argument : sy.Symbol
+  arg : sy.Symbol
   alpha : sy.Expr
   beta : sy.Expr
   gamma : sy.Expr
@@ -58,7 +56,7 @@ def apply_servo_connection(
   gamma = sy.simplify(gamma)
 
   return ReducedDyanmics(
-    argument = servo_connection.arg,
+    arg = servo_connection.arg,
     alpha = alpha,
     beta = beta,
     gamma = gamma
@@ -76,9 +74,9 @@ def compute_zero_dynamics_trajectory(
   alpha = zero_dynamics.alpha
   beta = zero_dynamics.beta
   gamma = zero_dynamics.gamma
-  speed = sy.Dummy('d' + zero_dynamics.argument.name)
+  speed = sy.Dummy('d' + zero_dynamics.arg.name)
   rhs_expr = sy.Tuple(speed, (-beta * speed**2 - gamma) / alpha)
-  rhs_fun = sy.lambdify((zero_dynamics.argument, speed), rhs_expr)
+  rhs_fun = sy.lambdify((zero_dynamics.arg, speed), rhs_expr)
 
   def sys(t, st):
     dst = rhs_fun(*st)
@@ -153,27 +151,38 @@ def get_original_system_trajectory(
   )
 
 def find_sample_trajectory(par : CartPendParameters):
+  rat = sy.Rational
   sys = get_cart_pend_dynamics(par, simplify=True)
   subsys = get_subsystem(sys, simplify=True)
 
   phi = sy.Symbol(R'\phi', real=True)
-  k = sy.sympify(4) / 3
+  # k = sy.sympify(4) / 3
+  # connection = SymFunction(
+  #   expr = sy.Tuple(k * phi, phi),
+  #   arg = phi
+  # )
   connection = SymFunction(
-    expr = sy.Tuple(k * phi, phi),
+    expr = sy.Tuple(
+      rat(21, 10) - rat(3, 8) * (phi - rat(25, 10)),
+      phi
+    ),
     arg = phi
   )
+  phi0 = 2.2
 
   zero_dynamics = apply_servo_connection(subsys, connection)
 
   # stationary point
-  gamma0 = zero_dynamics.gamma.subs(zero_dynamics.argument, 0)
-  assert abs(gamma0) < 1e-5, 'There is not equilibrium at zero'
-  dgamma = zero_dynamics.gamma.diff(zero_dynamics.argument)
+  gamma_fun = sy.lambdify(zero_dynamics.arg, zero_dynamics.gamma)
+  phi_eq = brentq(gamma_fun, phi0 - 0.1, phi0 + 0.1)
+
+  assert abs(gamma_fun(phi_eq)) < 1e-5, 'There is not equilibrium at zero'
+  dgamma = zero_dynamics.gamma.diff(zero_dynamics.arg)
   lin = -dgamma / zero_dynamics.alpha
-  assert lin.subs(zero_dynamics.argument, 0) < 0, 'Equilibrium is not stable'
+  assert lin.subs(zero_dynamics.arg, phi_eq) < 0, 'Equilibrium is not stable'
 
   # compute zero dynamics trajectory
-  zero_dynamics_traj = compute_zero_dynamics_trajectory(zero_dynamics, 0.4, 5.0, step=1e-3)
+  zero_dynamics_traj = compute_zero_dynamics_trajectory(zero_dynamics, phi_eq + 0.1, 5.0, step=1e-3)
   traj = get_original_system_trajectory(zero_dynamics_traj, connection, subsys)
 
   ddx_expr = (sys.M.inv() @ (-sys.C @ sys.dq - sys.G + sys.B @ sys.u))[0,0]
@@ -188,6 +197,11 @@ def find_sample_trajectory(par : CartPendParameters):
     ddx[i] = ddx_fun(traj.q[i], traj.dq[i], traj.u[i])
   sp = make_interp_spline(traj.t, ddx, k=3, bc_type='periodic')
   x, dx = integrate_twice(sp, traj.t)
+
+  plt.plot(traj.t, x)
+  plt.plot(traj.t, dx)
+  plt.show()
+  exit()
 
   q = np.zeros((npts, sys.qdim))
   q[:,0] = x

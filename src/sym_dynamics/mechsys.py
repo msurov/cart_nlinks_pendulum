@@ -26,7 +26,7 @@ class MechanicalSystem:
   def udim(self):
     return self.u.shape[0]
 
-def get_numeric_dynamics(mechsys : MechanicalSystem) -> Callable[[float,np.ndarray,np.ndarray],np.ndarray]:
+def get_mechsys_normal_form(mechsys : MechanicalSystem) -> Callable[[float,np.ndarray,np.ndarray],np.ndarray]:
   """
     Convert symbolic expressions representing mechanical system to computable function
   """
@@ -40,7 +40,7 @@ def get_numeric_dynamics(mechsys : MechanicalSystem) -> Callable[[float,np.ndarr
   Minv = M.inv()
   ddq = Minv @ (-C @ dq - G + B @ u)
   dx = sy.Tuple(*dq, *ddq)
-  rhs = sy.lambdify((x, u), dx, 'numpy', )
+  rhs = sy.lambdify((x, u), dx, 'numpy')
 
   def dynamical_system(time : float, system_state : np.ndarray, system_input : np.ndarray):
     d_system_state = rhs(system_state, system_input)

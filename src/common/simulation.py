@@ -2,6 +2,8 @@ from scipy.integrate import ode
 import numpy as np
 from copy import copy
 from dataclasses import dataclass
+from typing import Callable
+
 
 @dataclass
 class SimulationResult:
@@ -11,13 +13,19 @@ class SimulationResult:
   state : list
 
 def simulate(
-    sys : callable,
-    fb : callable,
+    sys : Callable[[float, np.ndarray, np.ndarray], np.ndarray],
+    fb : Callable[[float, np.ndarray], np.ndarray],
     tspan : tuple,
     xstart : np.ndarray,
     step : float,
     **integrator_args
   ) -> SimulationResult:
+  R"""
+  :param sys: sys(t, x, u) -> dx
+  :param fb: fb(t, x) -> u
+  :param tspan: (tstart, tend)
+  :return: SimulationResult
+  """
 
   t = tstart = float(tspan[0])
   tend = float(tspan[1])

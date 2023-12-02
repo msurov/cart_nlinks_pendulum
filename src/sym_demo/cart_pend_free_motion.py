@@ -1,5 +1,5 @@
 from sym_dynamics.dynamics import get_cart_pend_dynamics, CartPendParameters
-from common.mechsys import get_numeric_dynamics, get_full_energy
+from sym_dynamics.mechsys import get_mechsys_normal_form, get_full_energy
 from common.simulation import simulate
 from vis.anim import animate
 import numpy as np
@@ -18,13 +18,16 @@ def test():
   )
   pc('get_cart_pend_dynamics')
   dynamics = get_cart_pend_dynamics(par, simplify=True)
-  pc('get_numeric_dynamics')
-  sys = get_numeric_dynamics(dynamics)
+  pc('get_mechsys_normal_form')
+  sys = get_mechsys_normal_form(dynamics)
   dim = par.nlinks + 1
 
   input = lambda _,__: [0.]
   np.random.seed(0)
-  x0 = 1e-5 * np.random.normal(size=2*dim)
+  x0 = np.array([
+    1., 2., 3., 4., 5., 6., 7., 8.
+  ])
+
   pc('simulate')
   simres = simulate(sys, input, [0., 15.], x0, 1e-2, max_step=1e-3)
 

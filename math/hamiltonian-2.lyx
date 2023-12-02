@@ -1,0 +1,513 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+———————————————————————————
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x_{1}=x+l\sin\theta$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y_{1}=l\cos\theta$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y_{1}=-ax_{1}^{2}=-a\left(x^{2}+l^{2}\sin^{2}\theta+2xl\sin\theta\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{y}_{1}=-2ax_{1}\dot{x}_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $-l\sin\theta\dot{\theta}=-2a\left(x+l\sin\theta\right)\left(\dot{x}+l\cos\theta\dot{\theta}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(2ax+2al\sin\theta\right)\dot{x}+\left(2axl\cos\theta+2al\sin\theta l\cos\theta-l\sin\theta\right)\dot{\theta}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(\frac{1}{l}x+\sin\theta\right)\dot{x}+\left(x\cos\theta+l\sin\theta\cos\theta-\frac{1}{2a}\sin\theta\right)\dot{\theta}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a\dot{q}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{q}=M^{-1}p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L=\frac{1}{2}p^{T}M^{-1}p-U$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L_{p}=M^{-1}p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+если изначальное ограничение 
+\begin_inset Formula $a\left(n\right)p=0$
+\end_inset
+
+, то 
+\begin_inset Formula $a$
+\end_inset
+
+ можно выбрать нормированным.
+\end_layout
+
+\begin_layout Standard
+тогда 
+\begin_inset Formula $n\left(q\right)$
+\end_inset
+
+ можно выбрать нормированным
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p=n\left(q\right)\xi$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{p}=\frac{\partial n\left(q\right)}{\partial q}\dot{q}\xi+n\left(q\right)\dot{\xi}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{p}=-L_{q}+Bu$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{q}=L_{p}=M^{-1}p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{p}=-L_{q}+Bu & =\frac{\partial n\left(q\right)}{\partial q}\frac{dq}{dt}\xi+n\left(q\right)\dot{\xi}\\
+ & =\frac{\partial n\left(q\right)}{\partial q}M^{-1}p\xi+n\left(q\right)\dot{\xi}\\
+ & =\frac{\partial n}{\partial q}M^{-1}n\xi^{2}+n\dot{\xi}\\
+\dot{\xi} & =-\frac{B_{\perp}}{B_{\perp}n}\left(\frac{\partial n}{\partial q}M^{-1}n\xi^{2}+L_{q}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+Задаём связь
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+p_{\theta} & =\eta\left(\theta\right)
+\end{align*}
+
+\end_inset
+
+получаем
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{p}_{\theta} & =\eta'\dot{\theta}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left[\begin{array}{c}
+p_{x}\\
+p_{\theta}
+\end{array}\right] & =M\dot{q}\\
+\eta\left(\theta\right) & =M_{21}\dot{x}+M_{22}\dot{\theta}\\
+\dot{x} & =\frac{\eta\left(\theta\right)-M_{22}\dot{\theta}}{M_{21}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{p} & =\left[\begin{array}{c}
+\dot{p}_{x}\\
+\dot{p}_{\theta}
+\end{array}\right]=-L_{q}+\left[\begin{array}{c}
+1\\
+0
+\end{array}\right]u\\
+\left[0,1\right]\cdot\left[\begin{array}{c}
+\dot{p}_{x}\\
+\dot{p}_{\theta}
+\end{array}\right] & =-\left[0,1\right]\cdot L_{q}+\left[0,1\right]\cdot\left[\begin{array}{c}
+1\\
+0
+\end{array}\right]u\\
+\eta'\dot{\theta} & =-\left[0,1\right]\cdot L_{q}\\
+\dot{q} & =M^{-1}p=M^{-1}\left[\begin{array}{c}
+p_{x}\\
+p_{\theta}
+\end{array}\right]
+\end{align*}
+
+\end_inset
+
+Получаю СДУ относительно 
+\begin_inset Formula $x,\theta$
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{align*}
+\eta'\dot{\theta} & =-\left[0,1\right]\cdot L_{q}\\
+\left[\begin{array}{c}
+\frac{\eta\left(\theta\right)-M_{22}\dot{\theta}}{M_{21}}\\
+\dot{\theta}
+\end{array}\right] & =M^{-1}\left[\begin{array}{c}
+p_{x}\\
+p_{\theta}
+\end{array}\right]\\
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+——————————————————
+\end_layout
+
+\begin_layout Enumerate
+Я задаю связь 
+\begin_inset Formula $p_{\theta}=\mu\left(\theta\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Получаю выряжения для других вызовых координат.
+ Из выражения для момента получаю соотношение между 
+\begin_inset Formula $\dot{x},x,\theta,\dot{\theta}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+p & =M\dot{q}\\
+p_{\theta} & =\mu\left(\theta\right)=M_{21}\dot{x}+M_{22}\dot{\theta}\\
+\dot{x} & =\frac{\mu\left(\theta\right)-M_{22}\dot{\theta}}{M_{21}}\\
+p & =M\dot{q}=M\left[\begin{array}{c}
+\frac{\mu\left(\theta\right)-M_{22}\dot{\theta}}{M_{21}}\\
+\mu\left(\theta\right)
+\end{array}\right]\\
+ & =M\left[\begin{array}{c}
+\frac{1}{M_{21}}\\
+1
+\end{array}\right]\mu\left(\theta\right)-M\left[\begin{array}{c}
+1\\
+0
+\end{array}\right]\frac{M_{22}\dot{\theta}}{M_{21}}
+\end{align*}
+
+\end_inset
+
+Из выражения для 
+\begin_inset Formula $\dot{p}$
+\end_inset
+
+ получаю 
+\begin_inset Formula 
+\begin{align*}
+\dot{p} & =-L_{q}+\left[\begin{array}{c}
+1\\
+0
+\end{array}\right]u\\
+\left[\begin{array}{c}
+\dot{p}_{x}\\
+\dot{p}_{\theta}
+\end{array}\right] & =-L_{q}+\left[\begin{array}{c}
+1\\
+0
+\end{array}\right]u\\
+\dot{p}_{\theta}=\mu'\dot{\theta} & =-\frac{\partial L}{\partial\theta}=-p^{T}\frac{\partial M^{-1}}{\partial\theta}p+\frac{\partial U}{\partial\theta}\\
+p & =M\dot{q}=
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

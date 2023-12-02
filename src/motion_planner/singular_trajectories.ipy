@@ -1,0 +1,28 @@
+#%%
+from sym_dynamics.dynamics import CartPendParameters, get_cart_pend_dynamics
+import sympy as sy
+import numpy as np
+from IPython.display import display
+
+def main():
+  rat = sy.Rational
+  par = CartPendParameters(
+    link_lengths=[1,],
+    mass_center=[rat(1,2)],
+    masses=[1, 1],
+    gravity_accel=10
+  )
+  dynamics = get_cart_pend_dynamics(par, True)
+  qs = [0., np.pi + 0.5]
+  M = dynamics.M.subs(zip(dynamics.q, qs))
+  S = sy.Matrix([
+    [0, -1],
+    [1, 0]
+  ])
+  B_perp = dynamics.B.T @ S
+  display(B_perp @ M)
+
+
+main()
+
+#%%

@@ -1,5 +1,5 @@
 import sympy as sy
-from common.mechsys import MechanicalSystem
+from .mechsys import MechanicalSystem
 from parameters.parameters import CartPendParameters
 
 

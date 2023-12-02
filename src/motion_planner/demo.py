@@ -1,5 +1,3 @@
-#%%
-
 from motion_planner.servo_connection_planner import find_sample_trajectory
 import matplotlib.pyplot as plt
 from sym_dynamics.dynamics import CartPendParameters
@@ -45,5 +43,3 @@ def test():
 
 if __name__ == '__main__':
   test()
-
-# %%
