@@ -4,6 +4,7 @@ import sympy as sy
 import numpy as np
 from IPython.display import display
 
+
 def main():
   rat = sy.Rational
   par = CartPendParameters(

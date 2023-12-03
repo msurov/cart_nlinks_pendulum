@@ -12,7 +12,9 @@ setup(
         'scipy',
         'ipython',
         'PyQT6',
-        'ipykernel'
+        'ipykernel',
+        'casadi_bspline @ git+https://github.com/msurov/casadi_bspline'
+        # 'casadi_bspline @ file:///home/msurov/sirius/casadi_bspline'
     ],
     package_dir = {
         '': 'src'

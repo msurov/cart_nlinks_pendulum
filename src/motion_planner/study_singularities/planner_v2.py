@@ -4,16 +4,16 @@ from cas_dynamics.dynamics import (
   MechanicalSystem
 )
 from cas_dynamics.mechsys import get_mechsys_normal_form
-from common.symfunc import SymFunction
 import casadi as ca
 import numpy as np
 from scipy.integrate import solve_ivp
 from scipy.interpolate import make_interp_spline
 from motion_planner.trajectory import MechanicalSystemTrajectory
 import matplotlib.pyplot as plt
+from vis.anim import animate
 
 
-def find_periodic_traj(theta_fun : ca.SX, period : float, dynamics : MechanicalSystem):
+def find_periodic_traj(theta_fun : ca.SX, period : float, dynamics : MechanicalSystem) -> MechanicalSystemTrajectory:
   B = dynamics.B
   C = dynamics.C
   M = dynamics.M
@@ -100,21 +100,22 @@ def show_trajectory(traj : MechanicalSystemTrajectory):
   fig, axes = plt.subplots(2, 2, sharex=True, num='phase trajectory components')
   plt.sca(axes[0,0])
   plt.grid(True)
-  plt.plot(traj.q[:,0], traj.q[:,1])
-  plt.ylabel(R'$\theta$')
+  plt.plot(traj.q[:,1], traj.q[:,0])
+  plt.ylabel(R'$x$')
   plt.sca(axes[0,1])
   plt.grid(True)
-  plt.plot(traj.q[:,0], traj.dq[:,1])
+  plt.plot(traj.q[:,1], traj.dq[:,1])
   plt.ylabel(R'$\dot\theta$')
   plt.sca(axes[1,0])
   plt.grid(True)
-  plt.plot(traj.q[:,0], traj.dq[:,0])
+  plt.xlabel(R'$\theta$')
+  plt.plot(traj.q[:,1], traj.dq[:,0])
   plt.ylabel(R'$\dot x$')
   plt.sca(axes[1,1])
   plt.grid(True)
-  plt.plot(traj.q[:,0], traj.u)
+  plt.plot(traj.q[:,1], traj.u)
   plt.ylabel(R'$u$')
-  plt.xlabel(R'$x$')
+  plt.xlabel(R'$\theta$')
   plt.tight_layout()
   return fig
 
@@ -185,15 +186,19 @@ def demo():
     link_lengths=[2],
     mass_center=[1],
     masses=[1, 1],
-    gravity_accel=10
+    gravity_accel=1
   )
   mechsys = get_cart_pend_dynamics(par)
   t = ca.SX.sym('t')
-  theta_ref = ca.Function('theta_ref', [t], [0.11 * ca.sin(t) - 0.26 * ca.sin(2 * t)])
+  # theta_ref = ca.Function('theta_ref', [t], [0.11 * ca.sin(t) - 0.26 * ca.sin(2 * t)])
+  # theta_ref = ca.Function('theta_ref', [t], [0.14 * ca.sin(t) + 0.19 * ca.sin(3*t) - 0.11 * ca.sin(5*t)])
+  theta_ref = ca.Function('theta_ref', [t], [0.6 * ca.sin(t) - 0.4 * ca.sin(2*t)])
   traj = find_periodic_traj(theta_ref, 2 * np.pi, mechsys)
-  verify_trajectory(mechsys, traj)
-  show_trajectory(traj)
-  plt.show()
+  a = animate(traj.t, traj.q, par)
+  a.save('fig/wierd_trajectory.gif')
+  # verify_trajectory(mechsys, traj)
+  # show_trajectory(traj)
+  # plt.show()
 
 if __name__ == '__main__':
   demo()
