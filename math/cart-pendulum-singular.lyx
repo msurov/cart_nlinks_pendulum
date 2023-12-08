@@ -1,0 +1,1074 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M_{ij}\ddot{q}^{j}+\Gamma_{ijk}\dot{q}^{j}\dot{q}^{k}+G_{i}=f_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+L & \equiv\frac{M_{ij}\dot{q}^{i}\dot{q}^{j}}{2}-U\\
+\Gamma_{ijk} & \equiv\frac{1}{2}\left(\frac{\partial M_{ij}}{\partial q^{k}}+\frac{\partial M_{ik}}{\partial q^{j}}-\frac{\partial M_{jk}}{\partial q^{i}}\right)\\
+G_{i} & \equiv\frac{\partial U}{\partial q^{i}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+M\left(q\right)\ddot{q}+C\left(q,\dot{q}\right)\dot{q}+G\left(q\right)=\left(\begin{array}{c}
+f_{1}\\
+\vdots\\
+f_{n-1}\\
+0
+\end{array}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+with lagrangian of natural form 
+\begin_inset Formula 
+\[
+L\left(q,\dot{q}\right)=\frac{\dot{q}^{T}M\left(q\right)\dot{q}}{2}-U\left(q\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $q\in\mathbb{R}^{n}$
+\end_inset
+
+ is the tuple of generalized coordinates, 
+\begin_inset Formula $M\left(q\right)$
+\end_inset
+
+ is the kinetic energy matrix, 
+\begin_inset Formula $C\left(q,\dot{q}\right)\equiv\frac{1}{2}\sum_{j}\left(\frac{\partial M_{ij}}{\partial q^{k}}+\frac{\partial M_{ik}}{\partial q^{j}}-\frac{\partial M_{jk}}{\partial q^{i}}\right)\dot{q}^{j}$
+\end_inset
+
+ is the matrix of Coriolis and centrifugal forces and 
+\begin_inset Formula $G\equiv\frac{\partial U}{\partial q}$
+\end_inset
+
+ is the matrix of potential forces.
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $q_{*}\in\left\{ q\in\mathbb{R}^{n}|\left(\exists\theta\in\mathbb{R}\right)\left[q=Q\left(\theta\right)\right]\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $B=\left[\begin{array}{c}
+1\\
+0
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $u\left(q,\dot{q}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+s.t.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\ddot{q} & =M^{-1}\left(q\right)\left(C\left(q,\dot{q}\right)\dot{q}+G\left(q\right)+B\left(q\right)u\right)\\
+q\left(t_{0}\right)\in\mathcal{N}\\
+\dot{q}\left(t_{0}\right)\in\mathbb{R}^{n}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $q\left(t\right)\in\mathcal{N}\,\forall\,t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+Let us substitute
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+q & =Q\left(\theta\right)\\
+\dot{q} & =\frac{dQ}{d\theta}\dot{\theta}\\
+\ddot{q} & =\frac{dQ}{d\theta}\ddot{\theta}+\frac{d^{2}Q}{d\theta^{2}}\dot{\theta}^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M\left(Q\left(\theta\right)\right)\frac{dQ}{d\theta}\ddot{\theta}+M\left(Q\left(\theta\right)\right)\frac{d^{2}Q}{d\theta^{2}}\dot{\theta}^{2}+C\left(Q\left(\theta\right),\frac{dQ}{d\theta}\right)\frac{dQ}{d\theta}\dot{\theta}^{2}+G\left(Q\right)=B\left(Q\left(\theta\right)\right)u$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $B^{+}M\frac{dQ}{d\theta}\ddot{\theta}+B^{+}M\frac{d^{2}Q}{d\theta^{2}}\dot{\theta}^{2}+B^{+}C\frac{dQ}{d\theta}\dot{\theta}^{2}+B^{+}G=u$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $B^{\perp}M\frac{dQ}{d\theta}\ddot{\theta}+B^{\perp}M\frac{d^{2}Q}{d\theta^{2}}\dot{\theta}^{2}+B^{\perp}C\frac{dQ}{d\theta}\dot{\theta}^{2}+B^{\perp}G=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\underbrace{B^{\perp}M\frac{dQ}{d\theta}}_{=:\alpha\left(\theta\right)}\ddot{\theta}+\underbrace{\left(B^{\perp}M\frac{d^{2}Q}{d\theta^{2}}+B^{\perp}C\frac{dQ}{d\theta}\right)}_{=:\beta\left(\theta\right)}\dot{\theta}^{2}+\underbrace{B^{\perp}G}_{=:\gamma\left(\theta\right)}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha\left(\theta\right)\ddot{\theta}+\beta\left(\theta\right)\dot{\theta}^{2}+\gamma\left(\theta\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+First Integral
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $E\left(\theta,\dot{\theta}\right)=\frac{a\left(\theta\right)\dot{\theta}^{2}}{2}+b\left(\theta\right)=\mathrm{const}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{dE}{dt}=\frac{a'\dot{\theta}^{3}}{2}+\frac{a2\dot{\theta}\ddot{\theta}}{2}+b'\dot{\theta}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a\ddot{\theta}+\frac{a'}{2}\dot{\theta}^{2}+b'=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ddot{\theta}+\frac{a'}{2a}\dot{\theta}^{2}+\frac{b'}{a}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+compare with
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha\left(\theta\right)\ddot{\theta}+\beta\left(\theta\right)\dot{\theta}^{2}+\gamma\left(\theta\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+will have
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{b'}{a}=\frac{\gamma}{\alpha}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{a'}{2a}=\frac{\beta}{\alpha}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+then
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a\left(\theta\right)=\exp\left(2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}dw\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $b\left(\theta\right)=\int_{\theta_{0}}^{\theta}\frac{\gamma\left(v\right)a\left(v\right)}{\alpha\left(v\right)}dv=\int_{\theta_{0}}^{\theta}\frac{\gamma\left(v\right)}{\alpha\left(v\right)}\exp\left(2\int_{\theta_{0}}^{v}\frac{\beta\left(w\right)}{\alpha\left(w\right)}dw\right)dv$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $E\left(\theta,\dot{\theta}\right)=\frac{1}{2}\exp\left(2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}dw\right)\dot{\theta}^{2}+\int_{\theta_{0}}^{\theta}\frac{\gamma\left(v\right)}{\alpha\left(v\right)}\exp\left(2\int_{\theta_{0}}^{v}\frac{\beta\left(w\right)}{\alpha\left(w\right)}dw\right)dv$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+verify:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{dE}{dt}=\frac{\beta\left(\theta\right)}{\alpha\left(\theta\right)}\dot{\theta}\exp\left(2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}dw\right)\dot{\theta}^{2}+\frac{1}{2}\exp\left(2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}dw\right)2\dot{\theta}\ddot{\theta}+\frac{\gamma\left(\theta\right)}{\alpha\left(\theta\right)}\exp\left(2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}dw\right)\dot{\theta}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $=\frac{\dot{\theta}}{\alpha\left(\theta\right)}\underbrace{\left[\beta\left(\theta\right)\dot{\theta}^{2}+\alpha\left(\theta\right)\ddot{\theta}+\gamma\left(\theta\right)\right]}_{=0}\exp\left(2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}dw\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma\left(\theta_{e}\right)=0,\quad\frac{\gamma'\left(\theta_{e}\right)}{\alpha\left(\theta_{e}\right)}<0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma\left(\theta_{e}\right)=0,\quad\frac{\gamma'\left(\theta_{e}\right)}{\alpha\left(\theta_{e}\right)}>0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ddot{\theta}\approx-\frac{\gamma\left(\theta\right)}{\alpha\left(\theta\right)}\approx-\frac{\gamma'\left(\theta_{e}\right)}{\alpha\left(\theta_{e}\right)}\left(\theta-\theta_{e}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma\left(\theta_{e}\right)=0\Rightarrow B^{\perp}\left(q_{e}\right)G\left(q_{e}\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma=B^{\perp}\left(Q\right)G\left(Q\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\gamma'=\frac{\partial B^{\perp}G}{\partial q}\frac{dQ}{d\theta}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha=B^{\perp}MQ'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $q=Q\left(\theta\right)=q_{e}+c_{1}\theta+c_{2}\theta^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\gamma'\left(0\right)}{\alpha\left(0\right)}=\left[\left(B^{\perp}MQ'\right)^{-1}\left(\frac{\partial B^{\perp}G}{\partial q}\frac{dQ}{d\theta}\right)\right]_{\theta=0}>0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Q\left(\theta\right)=\left(\begin{array}{c}
+c\cdot\theta\\
+\theta
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $B^{\perp}\left(q_{e}\right)G\left(q_{e}\right)=\sin\phi_{e}=0\,\,\Rightarrow\,\,\phi_{e}=0,\pi$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha=B_{\perp}MQ'=\left[0,1\right]\left[\begin{array}{cc}
+2 & \cos\phi\\
+\cos\phi & 1
+\end{array}\right]\left[\begin{array}{c}
+c\\
+1
+\end{array}\right]=c\cos\theta+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\beta=$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma=\left[0,1\right]\left[\begin{array}{c}
+0\\
+-\sin\phi
+\end{array}\right]=-\sin\theta$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma'=-\cos\theta$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(\frac{\gamma'}{\alpha}\right)_{\theta=0}=\left(\frac{-\cos\theta}{c\cos\theta+1}\right)_{\theta=0}=\frac{-1}{c+1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(\frac{\gamma'}{\alpha}\right)_{\theta=0}>0\,\,\Rightarrow\,\,c<-1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha\left(\theta\right)=\left[0,1\right]\left[\begin{array}{cc}
+2 & \cos\theta\\
+\cos\theta & 1
+\end{array}\right]\left[\begin{array}{c}
+c\\
+1
+\end{array}\right]=c\cos\theta+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma=\left[0,1\right]\left[\begin{array}{c}
+0\\
+-\sin\theta
+\end{array}\right]=-\sin\theta$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+the reduced dynamcs
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\underbrace{\left(c\cos\theta+1\right)}_{\alpha\left(\theta\right)}\ddot{\theta}+\underbrace{0}_{\beta\left(\theta\right)}\cdot\dot{\theta}^{2}\underbrace{-\sin\theta}_{\gamma\left(\theta\right)}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{q}_{\star}\left(t_{s}\right)\ne0$
+\end_inset
+
+ and 
+\begin_inset Formula $B_{\perp}\left(q_{\star}\left(t_{s}\right)\right)M\left(q_{\star}\left(t_{s}\right)\right)\dot{q}_{\star}\left(t_{s}\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What if 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\underbrace{B^{\perp}M\frac{dQ}{d\theta}}_{=:\alpha\left(\theta\right)}\ddot{\theta}+\underbrace{\left(B^{\perp}M\frac{d^{2}Q}{d\theta^{2}}+B^{\perp}C\frac{dQ}{d\theta}\right)}_{=:\beta\left(\theta\right)}\dot{\theta}^{2}+\underbrace{B^{\perp}G}_{=:\gamma\left(\theta\right)}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ddot{\theta}=\frac{-\beta\left(\theta\right)\dot{\theta}^{2}-\gamma\left(\theta\right)}{\alpha\left(\theta\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $q=Q\left(\theta\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $B^{\perp}\left(q_{s}\right)M\left(q_{s}\right)\frac{dQ}{d\theta}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha\left(\theta_{s}\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha'\left(\theta_{s}\right)\ne0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $-\frac{\gamma\left(\theta_{s}\right)}{\beta\left(\theta_{s}\right)}>0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\beta\left(\theta_{s}\right)}{\alpha'\left(\theta_{s}\right)}<-\frac{1}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma\left(\theta\right)>0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Q=\left(\begin{array}{c}
+c_{1}\theta+c_{2}\theta^{2}\\
+\phi_{e}+\theta
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Q'=\left(\begin{array}{c}
+c_{1}+2c_{2}\theta\\
+1
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha\left(\theta\right)=\left[\begin{array}{cc}
+\cos\phi & 1\end{array}\right]Q'=\left[\begin{array}{cc}
+\cos\phi & 1\end{array}\right]\left(\begin{array}{c}
+c_{1}+2c_{2}\theta\\
+1
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $c_{1}=-\frac{1}{\cos\phi_{s}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{dy}{dx}=-\frac{2\beta}{\alpha}y-\frac{\gamma}{\alpha}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x\mapsto-x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $-\frac{dy}{dx}=-\frac{2\beta}{\alpha}y-\frac{\gamma}{\alpha}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta\ddot{\theta}-\dot{\theta}^{2}+1=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta\left(t\right)=-\theta_{0}\cos\frac{t}{\theta_{0}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{\theta}=\sin\frac{t}{\theta_{0}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ddot{\theta}=\frac{1}{\theta_{0}}\cos\frac{t}{\theta_{0}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta\left(t\right)=a\sinh\frac{t}{a}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{\theta}\left(t\right)=\cosh\frac{t}{a}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ddot{\theta}\left(t\right)=\frac{1}{a}\sinh\frac{t}{a}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta\ddot{\theta}+\dot{\theta}^{2}-1=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta=\sqrt{t^{2}+c_{1}t+c_{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{\theta}=\frac{t+\frac{c_{1}}{2}}{\sqrt{t^{2}+c_{1}t+c_{2}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta_{0}=\sqrt{c_{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{\theta}_{0}=\frac{c_{1}}{2\sqrt{c_{2}}}=\frac{c_{1}}{2\theta_{0}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $c_{1}=2\theta_{0}\dot{\theta}_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta=\sqrt{t^{2}+2\theta_{0}\dot{\theta}_{0}t+\theta_{0}^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{\theta}=\frac{t+\theta_{0}\dot{\theta}_{0}}{\sqrt{t^{2}+2\theta_{0}\dot{\theta}_{0}t+\theta_{0}^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $-\theta_{0}\dot{\theta}_{0}=t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(\theta_{a},\theta_{s}\right)\times\left(0,\infty\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta_{s},\dot{\theta}_{s}=\sqrt{-\frac{\gamma\left(\theta_{s}\right)}{\beta\left(\theta_{s}\right)}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha y'+2\beta y+\gamma=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y=C\exp\left(-2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}\right)dw$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y'=C'\exp\left(-2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}\right)dw-\frac{2\beta\left(\theta\right)}{\alpha\left(\theta\right)}C\exp\left(-2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}\right)dw$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C'=\frac{-\gamma}{\alpha}\exp\left(2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}\right)dw$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C=\int_{\theta_{0}}^{\theta}\frac{-\gamma\left(v\right)}{\alpha\left(v\right)}\exp\left(2\int_{\theta_{0}}^{v}\frac{\beta\left(w\right)}{\alpha\left(w\right)}\right)dwdv+C_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y=\left(y_{0}-\int_{\theta_{0}}^{\theta}\frac{\gamma\left(v\right)}{\alpha\left(v\right)}\exp\left(2\int_{\theta_{0}}^{v}\frac{\beta\left(w\right)}{\alpha\left(w\right)}\right)dwdv\right)\exp\left(-2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}\right)dw$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\dot{\theta}^{2}}{2}=\left(\frac{\dot{\theta}_{0}^{2}}{2}-\int_{\theta_{0}}^{\theta}\frac{\gamma\left(v\right)}{\alpha\left(v\right)}\exp\left(2\int_{\theta_{0}}^{v}\frac{\beta\left(w\right)}{\alpha\left(w\right)}\right)dwdv\right)\exp\left(-2\int_{\theta_{0}}^{\theta}\frac{\beta\left(w\right)}{\alpha\left(w\right)}\right)dw$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M=\left(\begin{array}{cc}
+2 & \cos\phi\\
+\cos\phi & 1
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $B=\left(\begin{array}{c}
+1\\
+0
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M^{-1}=\frac{1}{2-\cos^{2}\phi}\left(\begin{array}{cc}
+1 & -\cos\phi\\
+-\cos\phi & 2
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Q\left(\theta\right)=q_{s}+c\frac{1}{2-\cos^{2}\phi}\left(\begin{array}{c}
+1\\
+-\cos\phi
+\end{array}\right)\theta+v\theta^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Q=q_{s}+cM^{-1}\left(q_{s}\right)B\left(q_{s}\right)\theta+v\theta^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Q'=cM^{-1}\left(q_{s}\right)B\left(q_{s}\right)+2v\theta$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Q''=2v$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha\left(\theta\right)=B^{\perp}\left(q_{s}\right)M\left(q_{s}\right)\frac{dQ}{d\theta}=2B^{\perp}\left(q_{s}\right)M\left(q_{s}\right)v\theta$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\beta=B^{\perp}MQ''+B^{\perp}CQ'=B^{\perp}M2v+B^{\perp}C\left[cM^{-1}\left(q_{s}\right)B\left(q_{s}\right)+2v\theta\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left\{ \left(q,\dot{q}\right)\in T\mathbb{R}^{n}|\left(\exists\left(\theta,\dot{\theta}\right)\in\mathbb{R}^{2}\right)\left[q=Q\left(\theta\right),\dot{q}=\frac{dQ\left(\theta\right)}{d\theta}\dot{\theta}\right]\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+—
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document

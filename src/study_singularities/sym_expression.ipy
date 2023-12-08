@@ -1,0 +1,26 @@
+#%%
+from IPython.display import display
+from sym_dynamics.dynamics import CartPendParameters, get_cart_pend_dynamics
+import sympy as sy
+
+def demo():
+  par = CartPendParameters(
+    link_lengths = [1],
+    mass_center = [1],
+    masses = [1, 1],
+    gravity_accel = 1
+  )
+  cart_pendulum = get_cart_pend_dynamics(par, simplify=True)
+
+  print(sy.latex(cart_pendulum.M))
+  print(sy.latex(cart_pendulum.C))
+  print(sy.latex(cart_pendulum.G))
+  print(sy.latex(cart_pendulum.B))
+
+  display(cart_pendulum.M)
+  display(cart_pendulum.C)
+  display(cart_pendulum.G)
+  display(cart_pendulum.B)
+
+if __name__ == '__main__':
+  demo()
